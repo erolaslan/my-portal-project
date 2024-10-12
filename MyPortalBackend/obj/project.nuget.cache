@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z43CgusMfLzWchDyp2++MQhot44E2QOSV4ZozjfYQXSM/FLtkeIjC9LVJX6lygJsSzK8HiDGLKOlxXAY8sVl8w==",
+  "dgSpecHash": "Wo+dpOr2haRxQyuyRpOeHMLfIX+4Y3pGVV2AtFDNz/35uBjmUN4AiUz1h4CkWo5gG5JSbPgfy5X32ub2s8VDRQ==",
   "success": true,
-  "projectFilePath": "C:\\development\\test\\MyPortalBackend\\MyPortalBackend.csproj",
+  "projectFilePath": "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\erola\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.10\\microsoft.aspnetcore.authentication.jwtbearer.8.0.10.nupkg.sha512",
     "C:\\Users\\erola\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.4\\microsoft.aspnetcore.openapi.8.0.4.nupkg.sha512",

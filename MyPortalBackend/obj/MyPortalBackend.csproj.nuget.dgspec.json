@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\development\\test\\MyPortalBackend\\MyPortalBackend.csproj": {}
+    "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj": {}
   },
   "projects": {
-    "C:\\development\\test\\MyPortalBackend\\MyPortalBackend.csproj": {
+    "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\development\\test\\MyPortalBackend\\MyPortalBackend.csproj",
+        "projectUniqueName": "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj",
         "projectName": "MyPortalBackend",
-        "projectPath": "C:\\development\\test\\MyPortalBackend\\MyPortalBackend.csproj",
+        "projectPath": "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj",
         "packagesPath": "C:\\Users\\erola\\.nuget\\packages\\",
-        "outputPath": "C:\\development\\test\\MyPortalBackend\\obj\\",
+        "outputPath": "C:\\development\\test\\my-portal-project\\MyPortalBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
