@@ -1,17 +1,31 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using MyPortalBackend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// JWT Key tanımlama
-var key = Encoding.ASCII.GetBytes("your_very_Strong_secret_key_96512345641254!");
+// PostgreSQL bağlantı dizesini yapılandırma
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-// Swagger/OpenAPI hizmetlerini ekleme
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
+// JWT Key'i yapılandırma
+var jwtKey = builder.Configuration["Jwt:Key"]
+    ?? throw new InvalidOperationException("JWT secret key not found in configuration.");
+
+var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtKey));
+
+// Swagger/OpenAPI yapılandırması
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyPortal API", Version = "v1" });
+
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Example: 'Bearer 12345abcdef'",
@@ -37,7 +51,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// CORS yapılandırması ekliyoruz (Geliştirme ortamı için geniş izinler)
+// CORS yapılandırması
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -49,43 +63,37 @@ builder.Services.AddCors(options =>
 });
 
 // JWT Authentication yapılandırması
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.RequireHttpsMetadata = false;
-    options.SaveToken = true;
-    options.TokenValidationParameters = new TokenValidationParameters
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = false,
-        ValidateAudience = false
-    };
-});
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = signingKey,
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
-// Controller desteği ekleme
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Swagger sadece geliştirme ortamında aktif olacak
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyPortal API v1");
+    });
 }
 
-// Middleware yapılandırması
-app.UseCors("AllowAll");  // CORS politikasını uyguluyoruz
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
-// Controller'ların kullanımı için MapControllers ekliyoruz
 app.MapControllers();
 
 app.Run();

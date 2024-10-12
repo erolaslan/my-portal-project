@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/erolaslan/development/my-portal-project/MyPortalBackend/MyPortalBackend.csproj": {}
+    "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj": {}
   },
   "projects": {
-    "/Users/erolaslan/development/my-portal-project/MyPortalBackend/MyPortalBackend.csproj": {
+    "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/erolaslan/development/my-portal-project/MyPortalBackend/MyPortalBackend.csproj",
+        "projectUniqueName": "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj",
         "projectName": "MyPortalBackend",
-        "projectPath": "/Users/erolaslan/development/my-portal-project/MyPortalBackend/MyPortalBackend.csproj",
-        "packagesPath": "/Users/erolaslan/.nuget/packages/",
-        "outputPath": "/Users/erolaslan/development/my-portal-project/MyPortalBackend/obj/",
+        "projectPath": "C:\\development\\test\\my-portal-project\\MyPortalBackend\\MyPortalBackend.csproj",
+        "packagesPath": "C:\\Users\\erola\\.nuget\\packages\\",
+        "outputPath": "C:\\development\\test\\my-portal-project\\MyPortalBackend\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/erolaslan/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\erola\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,12 +38,21 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.10, )"
@@ -46,9 +61,23 @@
               "target": "Package",
               "version": "[8.0.4, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[8.1.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.8, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -78,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

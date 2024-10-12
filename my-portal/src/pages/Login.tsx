@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import API_URL from '../config';
+import { useNavigate, Link } from 'react-router-dom';
+import API_URL from '../config'; // Doğru URL'yi burada tanımlayın
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -10,7 +10,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch(`${API_URL}/Auth/login`, {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,34 +20,44 @@ const Login = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                localStorage.setItem('token', data.token); // Token’ı localStorage'a kaydet
-                navigate('/dashboard');
+                console.log('Token:', data.token); // Token'ı kontrol etmek için log
+                localStorage.setItem('token', data.token); // Token'ı kaydet
+                navigate('/dashboard'); // Başarılı giriş sonrası yönlendir
             } else {
                 setError('Invalid username or password');
             }
         } catch (err) {
-            console.error(err);
+            console.error('Error:', err);
             setError('Something went wrong. Please try again.');
         }
     };
 
     return (
-        <div>
-            <h2>Login44</h2>
+        <div style={{ textAlign: 'center' }}>
+            <h2>Login</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <input
                 type="text"
+                placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
+                style={{ marginBottom: '10px', padding: '8px', width: '300px' }}
             />
             <input
                 type="password"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
+                style={{ marginBottom: '10px', padding: '8px', width: '300px' }}
             />
-            <button onClick={handleLogin}>Login</button>
+            <button onClick={handleLogin} style={{ padding: '10px 20px', cursor: 'pointer' }}>
+                Login
+            </button>
+            <div style={{ marginTop: '20px' }}>
+                <p>
+                    Don't have an account? <Link to="/signup">Signup</Link>
+                </p>
+            </div>
         </div>
     );
 };
